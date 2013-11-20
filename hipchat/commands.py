@@ -7,7 +7,7 @@ if sys.version_info[0] == 2 and sys.version_info[1] < 6:
 else:
     import json
 
-from os.path import exists
+from os.path import exists, expanduser
 from sys import argv
 
 import hipchat.config
@@ -17,9 +17,10 @@ import hipchat.user
 class NoConfigException(Exception): pass
 
 def init_sys_cfg():
+    home = expanduser("~")
     if exists('hipchat.cfg'):
         hipchat.config.init_cfg('hipchat.cfg')
-    elif exists('~/.hipchat.cfg'):
+    elif exists("%s/.hipchat.cfg" % home):
         hipchat.config.init_cfg('~/.hipchat.cfg')
     elif exists('/etc/hipchat.cfg'):
         hipchat.config.init_cfg('/etc/hipchat.cfg')
