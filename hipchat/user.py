@@ -11,21 +11,21 @@ class User(HipChatObject):
     sort = 'user'
 
 
-User.create = classmethod(partial(call_hipchat, User, url="https://api.hipchat.com/v1/users/create", data=True))
+User.create = classmethod(partial(call_hipchat, User, url="users/create", data=True))
 User.delete = \
     classmethod(partial(call_hipchat, 
                         ReturnType=UserDeleteStatus, 
-                        url="https://api.hipchat.com/v1/users/delete", 
+                        url="users/delete", 
                         data=True))
 User.undelete = \
     classmethod(partial(call_hipchat, 
                         ReturnType=UserDeleteStatus, 
-                        url="https://api.hipchat.com/v1/users/undelete", 
+                        url="users/undelete", 
                         data=True))
 User.list = \
     classmethod(partial(call_hipchat, 
                         ReturnType=lambda x: map(User, map(lambda y: {'user': y}, x['users'])), 
-                        url="https://api.hipchat.com/v1/users/list", 
+                        url="users/list", 
                         data=False))
-User.show = classmethod(partial(call_hipchat, User, url="https://api.hipchat.com/v1/users/show", data=False))
-User.update = classmethod(partial(call_hipchat, User, url="https://api.hipchat.com/v1/users/update", data=True))
+User.show = classmethod(partial(call_hipchat, User, url="users/show", data=False))
+User.update = classmethod(partial(call_hipchat, User, url="users/update", data=True))

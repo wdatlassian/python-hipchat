@@ -25,14 +25,14 @@ def call_hipchat(cls, ReturnType, url, data=True, **kw):
     auth = [('format', 'json'), ('auth_token', hipchat.config.token)]
     if not data:
         auth.extend(kw.items())
-    req = Request(url=url + '?%s' % urlencode(auth))
+    req = Request(url=hipchat.config.api_url + url + '?%s' % urlencode(auth))
     if data:
         req.add_data(urlencode(kw.items()))
     if hipchat.config.proxy_server and hipchat.config.proxy_type:
         req.set_proxy(hipchat.config.proxy_server, hipchat.config.proxy_type)
     try:
         res = urlopen(req)
-    except HTTPError, e:
+    except Exception, e:
         resp = "".join(e.readlines())
         try:
             err_resp = json.loads(resp)

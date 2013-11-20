@@ -2,6 +2,8 @@ import itertools
 import random
 import sys
 
+sys.tracebacklimit = 0
+
 if sys.version_info[0] == 2 and sys.version_info[1] < 6:
     import simplejson as json
 else:
@@ -18,13 +20,14 @@ class NoConfigException(Exception): pass
 
 def init_sys_cfg():
     home = expanduser("~")
-    if exists('hipchat.cfg'):
-        hipchat.config.init_cfg('hipchat.cfg')
-    elif exists("%s/.hipchat.cfg" % home):
-        hipchat.config.init_cfg('~/.hipchat.cfg')
-    elif exists('/etc/hipchat.cfg'):
-        hipchat.config.init_cfg('/etc/hipchat.cfg')
-    else:
+    config_file_locations = ('hipchat.cfg', '%s/.hipchat.cfg' % home, '/etc/hipchat.cfg')
+    for config_file in config_file_locations:
+        if exists(config_file):
+            hipchat.config.init_cfg(config_file)
+    if not hipchat.config.token:
+        print "Please create a configuration file with \"token = <hipchat api token>\" in \nany of the following locations:\n"
+        print ", ".join(config_file_locations)
+        print ""
         raise NoConfigException
 
 class ArgsException(Exception): pass

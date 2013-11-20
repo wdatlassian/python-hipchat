@@ -18,20 +18,20 @@ class MessageSentStatus(HipChatObject):
 Room.history = \
     classmethod(partial(call_hipchat, 
                         ReturnType=lambda x: map(Message, map(lambda y: {'message': y}, x['messages'])), 
-                        url="https://api.hipchat.com/v1/rooms/history", 
+                        url="rooms/history", 
                         data=False))
 Room.list = \
     classmethod(partial(call_hipchat, 
                         ReturnType=lambda x: map(Room, map(lambda y: {'room': y}, x['rooms'])), 
-                        url="https://api.hipchat.com/v1/rooms/list", 
+                        url="rooms/list", 
                         data=False))
 
 Room.create = classmethod(
-    partial(call_hipchat, Room, url="https://api.hipchat.com/v1/rooms/create", data=True)
+    partial(call_hipchat, Room, url="rooms/create", data=True)
 )
 Room.topic = classmethod(
-    partial(call_hipchat, ReturnType=lambda x: x['status'], url="https://api.hipchat.com/v1/rooms/topic", data=True)
+    partial(call_hipchat, ReturnType=lambda x: x['status'], url="rooms/topic", data=True)
 )
 
-Room.message = classmethod(partial(call_hipchat, ReturnType=MessageSentStatus, url="https://api.hipchat.com/v1/rooms/message", data=True))
-Room.show = classmethod(partial(call_hipchat, Room, url="https://api.hipchat.com/v1/rooms/show", data=False))
+Room.message = classmethod(partial(call_hipchat, ReturnType=MessageSentStatus, url="rooms/message", data=True))
+Room.show = classmethod(partial(call_hipchat, Room, url="rooms/show", data=False))
