@@ -1,6 +1,6 @@
 ABOUT
 
-python-hipchat is a Python interfacet to the HipChat JSON api. It
+python-hipchat is a Python interface to the HipChat JSON api. It
 wraps the various routes supported by the API in Python classes,
 though the mapping isn't perfect. It is also a work in
 progress. Through python, it also exposes command line utilities that
