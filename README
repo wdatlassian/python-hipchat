@@ -7,6 +7,9 @@ progress. Through python, it also exposes command line utilities that
 will dump either json output to stdout or print human readable results
 as a poor mans FFI into other languages, such as Perl.
 
+Both hipchat.com and private deployments of HipChat Server are 
+supported.
+
 INSTALLATION
 
 is pretty easy. At the command line as root:
@@ -25,6 +28,8 @@ expose the hipchat top level module for testing and integration into
 other projects.
 
 EXAMPLES
+
+An example configuration is present in examples/hipchat.cfg.
 
 The full documentation of the HipChat API can be found here:
 
