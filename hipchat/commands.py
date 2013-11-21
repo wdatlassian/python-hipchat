@@ -2,7 +2,7 @@ import itertools
 import random
 import sys
 
-sys.tracebacklimit = 0
+# sys.tracebacklimit = 0
 
 if sys.version_info[0] == 2 and sys.version_info[1] < 6:
     import simplejson as json

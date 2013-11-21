@@ -21,8 +21,10 @@ def partial(func, *args, **keywords):
     return newfunc
 
 
-def call_hipchat(cls, ReturnType, url, data=True, **kw):
+def call_hipchat(cls, ReturnType, url='', urlv2='', data=True, **kw):
     auth = [('format', 'json'), ('auth_token', hipchat.config.token)]
+    if hipchat.config.api_version == 2:
+        url=urlv2
     if not data:
         auth.extend(kw.items())
     req = Request(url=hipchat.config.api_url + url + '?%s' % urlencode(auth))

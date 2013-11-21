@@ -9,7 +9,6 @@ token = 0
 
 def init_cfg(config_fname):
     cfg = ConfigObj(config_fname)
-    print "Using configuration file: %s" % config_fname
     global api_server, api_url, api_version, proxy_server, proxy_type, token
     try:
         token = cfg['token']
